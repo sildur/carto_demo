@@ -1,0 +1,3 @@
+MethodLength:
+  Exclude:
+  - spec/controllers/api/v1/*.rb
