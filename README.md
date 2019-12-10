@@ -41,6 +41,7 @@ bundle exec rspec
 ## Developer notes
 * The code has been checked with the rubocop gem
 * The testing suite is rspec
-* Code coverage is checked with the simplecov gem. Code coverage is 100%
+* Code coverage is checked with the simplecov gem. Code coverage is 100%. You 
+can find the coverage report on coverage/index.html
 * The project uses the gem annotate to automatically annotate the models with 
 schema info
