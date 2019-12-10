@@ -22,7 +22,7 @@ class Activity < ApplicationRecord
   validates :name, :hours_spent, :category, :location, :district, :latitude,
             :longitude, presence: true
 
-  def as_json(*_arguments)
+  def as_json(_options = nil)
     {
       'type' => 'Activity',
       'geometry' => {
