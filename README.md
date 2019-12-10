@@ -1,5 +1,7 @@
 # README
 
+[![Build Status](https://travis-ci.com/sildur/carto_demo.svg?branch=master)](https://travis-ci.com/sildur/carto_demo)
+
 ## Prerequisites
 
 * RVM
