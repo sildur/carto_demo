@@ -30,7 +30,7 @@ RSpec.describe Api::V1::ActivitiesController do
         activities = create_list(:activity, 10)
         get :index
         response_data = JSON.parse(response.body)
-        expect(response_data['type']).to eq('Features')
+        expect(response_data['type']).to eq('FeatureCollection')
         expect(response_data['features']).to match_array(activities.collect(&:as_json))
       end
     end
@@ -129,7 +129,7 @@ RSpec.describe Api::V1::ActivitiesController do
         }
         response_data = JSON.parse(response.body)
 
-        expect(response_data['type']).to eq('Features')
+        expect(response_data['type']).to eq('FeatureCollection')
         expect(response_data['features']).to eq([to_geojson(activity_a)])
 
         get :recommended, params: {
@@ -138,7 +138,7 @@ RSpec.describe Api::V1::ActivitiesController do
         }
         response_data = JSON.parse(response.body)
 
-        expect(response_data['type']).to eq('Features')
+        expect(response_data['type']).to eq('FeatureCollection')
         expect(response_data['features']).to eq([to_geojson(activity_b)])
       end
       it 'returns a activity belonging to the category' do
@@ -165,7 +165,7 @@ RSpec.describe Api::V1::ActivitiesController do
         }
         response_data = JSON.parse(response.body)
 
-        expect(response_data['type']).to eq('Features')
+        expect(response_data['type']).to eq('FeatureCollection')
         expect(response_data['features']).to eq([to_geojson(activity_a)])
 
         get :recommended, params: {
@@ -174,7 +174,7 @@ RSpec.describe Api::V1::ActivitiesController do
         }
         response_data = JSON.parse(response.body)
 
-        expect(response_data['type']).to eq('Features')
+        expect(response_data['type']).to eq('FeatureCollection')
         expect(response_data['features']).to eq([to_geojson(activity_b)])
       end
       it 'returns a activity open during the time of visit' do
@@ -201,7 +201,7 @@ RSpec.describe Api::V1::ActivitiesController do
         }
         response_data = JSON.parse(response.body)
 
-        expect(response_data['type']).to eq('Features')
+        expect(response_data['type']).to eq('FeatureCollection')
         expect(response_data['features']).to eq([to_geojson(activity_a)])
 
         get :recommended, params: {
@@ -210,7 +210,7 @@ RSpec.describe Api::V1::ActivitiesController do
         }
         response_data = JSON.parse(response.body)
 
-        expect(response_data['type']).to eq('Features')
+        expect(response_data['type']).to eq('FeatureCollection')
         expect(response_data['features']).to eq([to_geojson(activity_b)])
       end
       it 'returns a activity open during the time of visit including staying time' do
@@ -237,7 +237,7 @@ RSpec.describe Api::V1::ActivitiesController do
         }
         response_data = JSON.parse(response.body)
 
-        expect(response_data['type']).to eq('Features')
+        expect(response_data['type']).to eq('FeatureCollection')
         expect(response_data['features']).to eq([to_geojson(activity_a)])
 
         get :recommended, params: {
@@ -246,7 +246,7 @@ RSpec.describe Api::V1::ActivitiesController do
         }
         response_data = JSON.parse(response.body)
 
-        expect(response_data['type']).to eq('Features')
+        expect(response_data['type']).to eq('FeatureCollection')
         expect(response_data['features']).to eq([to_geojson(activity_b)])
       end
       it 'returns the activity with the longest visit time' do
@@ -273,7 +273,7 @@ RSpec.describe Api::V1::ActivitiesController do
         }
         response_data = JSON.parse(response.body)
 
-        expect(response_data['type']).to eq('Features')
+        expect(response_data['type']).to eq('FeatureCollection')
         expect(response_data['features']).to eq([to_geojson(activity_a)])
       end
     end

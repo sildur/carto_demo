@@ -40,7 +40,7 @@ class Activity < ApplicationRecord
   end
 
   def self.as_geojson(results)
-    { type: 'Features', features: results }
+    { type: 'FeatureCollection', features: results }
   end
 
   def self.recommended(category:, start_at:, end_at:, weekday:)
