@@ -24,7 +24,7 @@ class Activity < ApplicationRecord
 
   def as_json(_options = nil)
     {
-      'type' => 'Activity',
+      'type' => 'Feature',
       'geometry' => {
         'type' => 'Point',
         'coordinates' => [longitude, latitude]
@@ -40,7 +40,7 @@ class Activity < ApplicationRecord
   end
 
   def self.as_geojson(results)
-    { type: 'Activities', features: results }
+    { type: 'FeatureCollection', features: results }
   end
 
   def self.recommended(category:, start_at:, end_at:, weekday:)
