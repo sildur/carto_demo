@@ -28,7 +28,7 @@ class Api::V1::ActivitiesController < ApplicationController
 
   def verify_arguments
     errors = []
-    required_parameters = %i[category start_at end_at]
+    required_parameters = %i[category start_at end_at weekday]
 
     required_parameters.each do |required_parameter|
       if params[required_parameter].blank?
