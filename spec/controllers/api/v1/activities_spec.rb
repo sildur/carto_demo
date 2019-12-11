@@ -73,27 +73,47 @@ RSpec.describe Api::V1::ActivitiesController do
   describe 'GET #recommended' do
     describe 'with no category' do
       before do
-        get :recommended
+        get :recommended, params: {
+          start_at: '10:00', end_at: '11:00',
+          weekday: 'mo'
+        }
       end
       it 'returns http error' do
         expect(response).to have_http_status(:unprocessable_entity)
       end
       it 'requires a category parameter' do
         response_data = JSON.parse(response.body)
-        expect(response_data['errors']).to include('category is required')
+        expect(response_data['errors']).to eq(['category is required'])
+      end
+    end
+    describe 'with no weekday' do
+      before do
+        get :recommended, params: {
+          category: 'shopping', start_at: '10:00', end_at: '11:00'
+        }
+      end
+      it 'returns http error' do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+      it 'requires a weekday parameter' do
+        response_data = JSON.parse(response.body)
+        expect(response_data['errors']).to eq(['weekday is required'])
       end
     end
     describe 'with no time range' do
       before do
-        get :recommended
+        get :recommended, params: {
+          category: 'shopping', weekday: 'mo'
+        }
       end
       it 'returns http error' do
         expect(response).to have_http_status(:unprocessable_entity)
       end
       it 'requires start_at and end_at parameters' do
         response_data = JSON.parse(response.body)
-        expect(response_data['errors']).to include('start_at is required')
-        expect(response_data['errors']).to include('end_at is required')
+        expect(response_data['errors']).to match_array(
+          ['start_at is required', 'end_at is required']
+        )
       end
     end
 
