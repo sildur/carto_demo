@@ -97,6 +97,42 @@ RSpec.describe Api::V1::ActivitiesController do
       end
     end
 
+    describe 'with an invalid start_at' do
+      before do
+        get :recommended, params: {
+          category: 'shopping', start_at: '1000', end_at: '12:00',
+          weekday: 'mo'
+        }
+      end
+      it 'returns http error' do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+      it 'requires start_at to have a valid format' do
+        response_data = JSON.parse(response.body)
+        expect(
+          response_data['errors']
+        ).to eq(['start_at has an invalid format'])
+      end
+    end
+
+    describe 'with an invalid end_at' do
+      before do
+        get :recommended, params: {
+          category: 'shopping', start_at: '10:00', end_at: '1200',
+          weekday: 'mo'
+        }
+      end
+      it 'returns http error' do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+      it 'requires start_at to have a valid format' do
+        response_data = JSON.parse(response.body)
+        expect(
+          response_data['errors']
+        ).to eq(['end_at has an invalid format'])
+      end
+    end
+
     describe 'with a category and a time range' do
       it 'returns http success' do
         get :recommended, params: {

@@ -36,6 +36,15 @@ class Api::V1::ActivitiesController < ApplicationController
       end
     end
 
+    time_parameters = %i[start_at end_at]
+    valid_time_pattern = /([01]?[0-9]|2[0-3]):[0-5][0-9]/
+    time_parameters.each do |time_parameter|
+      if params[time_parameter].present? &&
+         !valid_time_pattern.match?(params[time_parameter])
+        errors << "#{time_parameter} has an invalid format"
+      end
+    end
+
     if errors.present?
       render json: { errors: errors }, status: :unprocessable_entity
     end
