@@ -89,7 +89,7 @@ RSpec.describe Api::V1::ActivitiesController do
     describe 'with no weekday' do
       before do
         get :recommended, params: {
-          category: 'shopping', start_at: '10:00', end_at: '11:00',
+          category: 'shopping', start_at: '10:00', end_at: '11:00'
         }
       end
       it 'returns http error' do
