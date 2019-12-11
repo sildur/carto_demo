@@ -45,7 +45,6 @@ class Api::V1::ActivitiesController < ApplicationController
       end
     end
 
-
     if errors.present?
       render json: { errors: errors }, status: :unprocessable_entity
     end
